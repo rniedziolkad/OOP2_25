@@ -13,5 +13,18 @@ public class Main {
         System.out.println("translated: "+p.translated(3, 3));
         Point translated = p.translated(3, 3);
         System.out.println("translated 2: "+translated);
+
+        Segment seg = new Segment();
+        seg.a = new Point();
+        seg.b = new Point();
+
+        seg.a.x = 1.0;
+        seg.a.y = 1.0;
+        seg.b.x = 5;
+        seg.b.y = 4;
+
+        System.out.println("Seg len: "+seg.length());
     }
+
+
 }
