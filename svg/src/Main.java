@@ -2,6 +2,8 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        //TODO: Utworzyć obiekt Style i przypisać do utworzonych polygonów (referencja)
+        //TODO: zmienić style w main i zaobserwować zmianę we wszystkich wielokątach
         Point p1 = new Point(30 ,40);
         Point p2 = new Point();
         p2.setY(40);

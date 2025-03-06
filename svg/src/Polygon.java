@@ -49,6 +49,8 @@ public class Polygon {
     }
 
     public String toSvg() {
+        //TODO: dodać klasę Style z polami fill, stroke, stroke_width
+        //TODO: dodać pole style w tej klasie i zamienić atrybut style poniżej
         return "<polygon points=\""+
                 this
                 +"\" style=\"fill:none;stroke:purple;stroke-width:3\" />";
