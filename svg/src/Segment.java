@@ -5,7 +5,7 @@ public class Segment {
     public Point b;
 
     public double length(){
-        return Math.sqrt(pow(a.x-b.x, 2) + pow(a.y-b.y, 2));
+        return Math.sqrt(pow(a.getX()-b.getX(), 2) + pow(a.getY()-b.getY(), 2));
     }
 
     public static Segment maxSegment(Segment[] arr){
