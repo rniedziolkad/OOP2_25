@@ -1,6 +1,7 @@
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Point p1 = new Point(30 ,40);
         Point p2 = new Point();
         p2.setY(40);
@@ -35,12 +36,20 @@ public class Main {
         polyCopy.setPoint(1, 0, 0);
         polyCopy.setPoint(2, -100, -30);
 
+        Polygon square = new Polygon(new Point[]{
+                new Point(70, 70),
+                new Point(130, 70),
+                new Point(130, 130),
+                new Point(70, 130)
+        });
+        scene.addPolygon(square);
+
         System.out.println("Scena svg:");
         System.out.println(scene.toSvg());
 
         System.out.println(polyCopy.boundingBox());
 
-
+        scene.save("rysunek.svg");
     }
 
 
