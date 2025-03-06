@@ -38,6 +38,9 @@ public class Main {
         System.out.println("Scena svg:");
         System.out.println(scene.toSvg());
 
+        System.out.println(polyCopy.boundingBox());
+
+
     }
 
 
