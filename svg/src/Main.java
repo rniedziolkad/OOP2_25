@@ -7,6 +7,11 @@ public class Main {
         System.out.println(p1);
         System.out.println(p2);
 
+        Segment seg = new Segment(p1, p2);
+        System.out.println(seg);
+        p2.setX(60);
+        System.out.println(seg);
+
     }
 
 

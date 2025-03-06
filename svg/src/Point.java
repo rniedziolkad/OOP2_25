@@ -6,10 +6,15 @@ public class Point {
         this.x = x;
         this.y = y;
     }
-
+    // konstruktor pusty
     public Point() {
         x = 0;
         y = 0;
+    }
+    // konstruktor kopiujący
+    public Point(Point other) {
+        this.x = other.x;
+        this.y = other.y;
     }
 
     // getter
