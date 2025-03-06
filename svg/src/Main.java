@@ -26,6 +26,18 @@ public class Main {
         System.out.println("Kopia: "+polyCopy);
 
         System.out.println(polyCopy.toSvg());
+
+
+        SvgScene scene = new SvgScene();
+        scene.addPolygon(poly);
+        scene.addPolygon(polyCopy);
+        polyCopy.setPoint(0, -50, -50);
+        polyCopy.setPoint(1, 0, 0);
+        polyCopy.setPoint(2, -100, -30);
+
+        System.out.println("Scena svg:");
+        System.out.println(scene.toSvg());
+
     }
 
 

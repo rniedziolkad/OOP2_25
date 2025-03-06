@@ -34,6 +34,6 @@ public class Polygon {
     public String toSvg() {
         return "<polygon points=\""+
                 this
-                +"\" style=\"fill:lime;stroke:purple;stroke-width:3\" />";
+                +"\" style=\"fill:none;stroke:purple;stroke-width:3\" />";
     }
 }
