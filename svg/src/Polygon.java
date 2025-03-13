@@ -1,7 +1,6 @@
 
-public class Polygon {
+public class Polygon extends Shape{
     private final Point[] vertices;
-    private final Style style;
 
     public static Polygon square(Segment diagonal, Style style){
         Segment[] perpendiculars = diagonal.perpendicularSegments(
@@ -25,11 +24,11 @@ public class Polygon {
     }
 
     public Polygon(Point[] vertices, Style style) {
+        super(style);
         this.vertices = new Point[vertices.length];
         for(int i=0; i<vertices.length; i++){
             this.vertices[i] = new Point(vertices[i]);
         }
-        this.style = style;
     }
 
     public void setPoint(int ix, int x, int y){
