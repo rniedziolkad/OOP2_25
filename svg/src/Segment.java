@@ -9,6 +9,14 @@ public class Segment {
         this.b = new Point(b);
     }
 
+    public Point getA() {
+        return a;
+    }
+
+    public Point getB() {
+        return b;
+    }
+
     public double length(){
         return Math.sqrt(pow(a.getX()-b.getX(), 2) + pow(a.getY()-b.getY(), 2));
     }
@@ -50,5 +58,9 @@ public class Segment {
                 "a=" + a +
                 ", b=" + b +
                 '}';
+    }
+
+    public Point getCenter() {
+        return new Point((a.getX()+b.getX())/2, (a.getY()+b.getY())/2);
     }
 }
