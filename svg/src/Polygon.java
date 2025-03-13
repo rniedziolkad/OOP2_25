@@ -36,6 +36,7 @@ public class Polygon extends Shape{
         this.vertices[ix].setY(y);
     }
 
+    @Override
     public BoundingBox boundingBox(){
         if(vertices.length == 0){
             return null;
@@ -62,6 +63,7 @@ public class Polygon extends Shape{
         return s.toString().trim();
     }
 
+    @Override
     public String toSvg() {
         return "<polygon points=\""+
                 this

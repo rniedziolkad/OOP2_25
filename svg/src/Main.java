@@ -31,8 +31,8 @@ public class Main {
 
 
         SvgScene scene = new SvgScene();
-        scene.addPolygon(poly);
-        scene.addPolygon(polyCopy);
+        scene.addShape(poly);
+        scene.addShape(polyCopy);
         polyCopy.setPoint(0, -50, -50);
         polyCopy.setPoint(1, 0, 0);
         polyCopy.setPoint(2, -100, -30);
@@ -43,7 +43,7 @@ public class Main {
                 new Point(130, 130),
                 new Point(70, 130)
         });
-        scene.addPolygon(square);
+        scene.addShape(square);
 
         Segment diag = new Segment(
                 new Point(100, 100),
@@ -52,11 +52,23 @@ public class Main {
         // tworzenie kwadratu
         Polygon square2 = Polygon.square(diag, style);
         System.out.println("square2: "+square2.toSvg());
-        scene.addPolygon(square2);
+        scene.addShape(square2);
 
         // tworzenie elipsy
         Ellipse ellipse = new Ellipse(new Point(-50, -50), 40, 30, style);
         System.out.println(ellipse);
+        scene.addShape(ellipse);
+
+        /* TODO: klasa Text dziedzicząca po Shape (element <text> svg)
+        *  - String text
+        *  - x, y (lewy górny róg, można użyć Point)
+        *  - textLength (przy okazji szerokość obiektu, do BoundingBox)
+        *  - fontSize (przy okazji wysokość obiektu)
+        *  + konstruktor
+        *  + toSvg() <text> </text> z atrybutami:
+        *    - x, y, textLength, font-size, style (z klasy Shape)
+        *  + boundingBox()
+        * */
 
         System.out.println("Scena svg:");
         System.out.println(scene.toSvg());

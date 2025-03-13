@@ -16,6 +16,11 @@ public class Ellipse extends Shape{
     }
 
     @Override
+    public BoundingBox boundingBox() {
+        return new BoundingBox(center.getX()-rx, center.getY()-ry, 2*rx, 2*ry);
+    }
+
+    @Override
     public String toString() {
         return "Ellipse{" +
                 "center=" + center +
