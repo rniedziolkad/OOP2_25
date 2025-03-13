@@ -13,6 +13,24 @@ public class Segment {
         return Math.sqrt(pow(a.getX()-b.getX(), 2) + pow(a.getY()-b.getY(), 2));
     }
 
+    // zwraca dwa możliwe odcinki prostopadłe zaczynające się w punkcie origin
+    public Segment[] perpendicularSegments(Point origin){
+        return perpendicularSegments(origin, length());
+    }
+
+    public Segment[] perpendicularSegments(Point origin, double length){
+        double dx = b.getX() - a.getX();
+        double dy = b.getY() - a.getY();
+        dx = dx/length() * length;
+        dy = dy/length() * length;
+
+        return new Segment[]{
+                new Segment(origin, new Point(origin.getX()+dx, origin.getY()-dy)),
+                new Segment(origin, new Point(origin.getX()-dx, origin.getY()+dy))
+        };
+    }
+
+
     public static Segment maxSegment(Segment[] arr){
         if (arr.length == 0)
             return null;
