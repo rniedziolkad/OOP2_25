@@ -25,14 +25,17 @@ public class Main {
 
         SolidFillShapeDecorator redPentagon =
                 new SolidFillShapeDecorator(pentagon, "red");
+        StrokeShapeDecorator blueStrokeRedPentagon =
+                new StrokeShapeDecorator(redPentagon, "blue", 3.0);
 
         Shape ellipse = new Ellipse(new Vec2(500, 700), 400, 100);
         ellipse = new SolidFillShapeDecorator(ellipse, "green");
+        ellipse = new StrokeShapeDecorator(ellipse, "black", 5.0);
 
         SvgScene scene = new SvgScene();
         scene.addShape(triangle);
         scene.addShape(rectangle);
-        scene.addShape(redPentagon);
+        scene.addShape(blueStrokeRedPentagon);
         scene.addShape(ellipse);
         scene.save("result.svg");
     }
