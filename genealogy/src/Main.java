@@ -20,10 +20,15 @@ public class Main {
                 "Ola", "Kowalska",
                 LocalDate.of(2012, 8, 7)
         ));
+        personList.add(new Person(
+                "Adam", "Kowalski",
+                LocalDate.of(2011, 4, 14)
+        ));
         System.out.println(personList.get(0).adopt(personList.get(1)));
         System.out.println(personList.get(0).adopt(personList.get(1)));
         System.out.println(personList.get(0).adopt(personList.get(0)));
         System.out.println(personList.get(0).adopt(personList.get(2)));
+        personList.get(0).adopt(personList.get(3));
 
         System.out.println(personList.size());
 //        personList[1];    -- nie działa
@@ -33,6 +38,9 @@ public class Main {
         System.out.println();
         System.out.println(personList.get(0).getYoungestChild());
         System.out.println(personList.get(1).getYoungestChild());
+
+        System.out.println();
+        System.out.println(personList.get(0).getChildren());
 
     }
 }
