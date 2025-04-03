@@ -4,8 +4,12 @@ public class Main {
     public static void main(String[] args) {
         try {
             List<Person> personList = Person.fromCsv("family.csv");
-            System.out.println(personList.size());
-            for (Person p : personList) {
+
+            Person.toBinaryFile(personList, "family.bin");
+            List<Person> family = Person.fromBinaryFile("family.bin");
+
+            System.out.println(family.size());
+            for (Person p : family) {
                 System.out.println(p);
                 System.out.println("Dzieci:");
                 for (Person child: p.getChildren()) {

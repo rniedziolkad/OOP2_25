@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -9,7 +7,7 @@ import java.time.temporal.ChronoField;
 import java.util.*;
 //import java.util.TreeSet;
 
-public class Person implements Comparable<Person>{
+public class Person implements Comparable<Person>, Serializable {
     private final String name, surname;
     private final LocalDate birth;
     private final LocalDate death;
@@ -64,29 +62,67 @@ public class Person implements Comparable<Person>{
                     Person parentA = family.get(elements[3]);
                     Person parentB = family.get(elements[4]);
                     if(parentA != null) {
-                        parentA.adopt(readPerson);
+                        try {
+                            parentA.adopt(readPerson);
+                        } catch (ParentingAgeException e){
+                            System.out.println(e.getMessage());
+                            System.out.println("Are you sure you want to adopt? [Y/n(default)]");
+                            Scanner sc = new Scanner(System.in);
+                            if (sc.nextLine().equalsIgnoreCase("Y")) {
+                                e.getParent().children.add(e.getChild());
+                            }
+                        }
                     }
                     if(parentB != null) {
-                        parentB.adopt(readPerson);
+                        try {
+                            parentB.adopt(readPerson);
+                        } catch (ParentingAgeException e){
+                        System.out.println(e.getMessage());
+                        System.out.println("Are you sure you want to adopt? [Y/n(default)]");
+                        Scanner sc = new Scanner(System.in);
+                        if (sc.nextLine().equalsIgnoreCase("Y")) {
+                            e.getParent().children.add(e.getChild());
+                        }
                     }
 
+                    }
                 } catch (NegativeLifespanException e) {
                     // po prostu ignorujemy linię i nie dodajemy nic do listy
                     // nie ma potrzeby przerywania wczytywania całego pliku
                     System.err.println(e.getMessage());
                 }
             }
-
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
         return family.values().stream().toList();
     }
 
-    public boolean adopt(Person p) {
+    public static void toBinaryFile(List<Person> personList, String fileName) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName))){
+            out.writeObject(personList);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public static List<Person> fromBinaryFile(String fileName) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))){
+            Object o = in.readObject();
+            return (List<Person>) o;
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
+        return new ArrayList<>();
+    }
+
+    public boolean adopt(Person p) throws ParentingAgeException {
         if (this == p)
             return false;
-
+        if (this.birth.until(p.birth).getYears() < 15 ||
+                (this.death != null && this.death.isBefore(p.birth))) {
+            throw new ParentingAgeException(this, p);
+        }
         return children.add(p);
     }
 
