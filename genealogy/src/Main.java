@@ -2,6 +2,16 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        PlantUMLRunner.setjarPath("/home/student/Pobrane/plantuml-1.2025.2.jar");
+        String umlData = "Alice -> Bob: Hello";
+        try {
+            PlantUMLRunner.generateDiagram(umlData,
+                    "/home/student/Pobrane",
+                    "diagram.png");
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
         try {
             List<Person> personList = Person.fromCsv("family.csv");
 
