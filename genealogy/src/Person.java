@@ -162,4 +162,41 @@ public class Person implements Comparable<Person>, Serializable {
     public String getFullName() {
         return name + ' ' + surname;
     }
+
+    public String getUMLObject() {
+        return "object \"" + getFullName() + "\" {\n" +
+                "birth="+birth+"\n" +
+                (death==null ? "" : "death="+death+"\n") +
+                "}\n";
+    }
+
+    public static String umlFromList(List<Person> personList) {
+        StringBuilder umlData = new StringBuilder();
+        for (Person p : personList) {
+            umlData.append(p.getUMLObject());
+        }
+        for (Person p : personList) {
+            for (Person child : p.getChildren()){
+                umlData.append('\"').append(child.getFullName()).append('\"')
+                        .append(" --> ")
+                        .append('\"').append(p.getFullName()).append('\"')
+                        .append("\n");
+            }
+        }
+
+        return umlData.toString();
+    }
+
+    // z4
+    public static List<Person> selectSurnames(List<Person> from, String substring){
+        List<Person> result = new ArrayList<>();
+        for (Person p : from) {
+            if (p.surname.toLowerCase().contains(substring.toLowerCase())){
+                result.add(p);
+            }
+        }
+        return result;
+    }
+
+
 }
