@@ -17,11 +17,27 @@ public class Main {
                     System.out.println("\t"+child.getFullName());
                 }
             }
-            String umlData = Person.umlFromList(family);
+//            String umlData = Person.umlFromList(
+//                    family,
+//                    Function.identity()     // bez przekształcenia
+//            );
+            String umlData = Person.umlFromList(
+                    family,
+                    uml -> uml.replaceFirst("\\{", "#yellow {"),
+                    person -> Person.selectDeceased(family).contains(person) ||
+                            Person.getOldestAlive(family) == person
+                    );
             PlantUMLRunner.generateDiagram(umlData,
                     "/home/student/Pobrane/",
                     "diagram.png");
             System.out.println(umlData);
+
+            // z4-7
+            System.out.println(Person.selectSurnames(family, "dąb"));
+            System.out.println(Person.sortedByBirth(family));
+            System.out.println(Person.selectDeceased(family));
+            System.out.println(Person.getOldestAlive(family));
+
 
         } catch (Exception e){
             System.err.println(e.getMessage());
