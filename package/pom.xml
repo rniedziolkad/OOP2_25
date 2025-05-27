@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.umcs.oop</groupId>
-    <artifactId>site</artifactId>
+    <artifactId>package</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -13,7 +13,6 @@
         <maven.compiler.target>23</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.xerial</groupId>
@@ -26,13 +25,5 @@
             <version>0.10.2</version>
         </dependency>
     </dependencies>
-
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>Github Packages</name>
-            <url>https://maven.pkg.github.com/rniedziolkad/OOP2_25/site</url>
-        </repository>
-    </distributionManagement>
 
 </project>
