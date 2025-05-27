@@ -26,4 +26,12 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>Github Repositories</name>
+            <url>https://maven.pkg.github.com/rniedziolkad/OOP2_25/package</url>
+        </repository>
+    </distributionManagement>
+
 </project>
