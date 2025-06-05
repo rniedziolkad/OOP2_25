@@ -3,9 +3,13 @@ package pl.umcs.oop.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ChatServer {
     private static final int PORT = 12345;
+    private static final ExecutorService threadPool = Executors.newCachedThreadPool();
+
     public static void main(String[] args) {
         try(ServerSocket serverSocket = new ServerSocket(PORT)){
             System.out.println("Serwer nasłuchuje na porcie: "+PORT);
@@ -13,12 +17,14 @@ public class ChatServer {
                 System.out.println("Oczekuje na połączenie...");
                 Socket socket = serverSocket.accept();
                 System.out.println("Połączono: "+socket);
-
-
+                ClientHandler ch = new ClientHandler(socket);
+                threadPool.submit(ch);
             }
 
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            threadPool.shutdown();
         }
     }
 }
