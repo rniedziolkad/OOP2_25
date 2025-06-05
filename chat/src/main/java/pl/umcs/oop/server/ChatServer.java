@@ -20,6 +20,7 @@ public class ChatServer {
                 Socket socket = serverSocket.accept();
                 System.out.println("Połączono: "+socket);
                 ClientHandler ch = new ClientHandler(socket, clients);
+                clients.add(ch);
                 threadPool.submit(ch);
             }
 
