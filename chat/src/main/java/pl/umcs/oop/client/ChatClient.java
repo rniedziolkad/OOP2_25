@@ -14,6 +14,20 @@ public class ChatClient {
             Socket socket = new Socket(SERVER_HOST, SERVER_PORT);
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader consoleIn = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+            Thread receiver = new Thread(() -> {
+                try {
+                    String message;
+                    while ((message = in.readLine()) != null) {
+                        System.out.println(message);
+                    }
+                } catch (IOException e) {
+                    System.err.println(e.getMessage());
+                }
+                System.exit(0);
+            });
+            receiver.start();
 
             String input;
             while (!(input = consoleIn.readLine()).equals("/exit")){
