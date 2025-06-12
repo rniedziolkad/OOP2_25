@@ -20,16 +20,16 @@ public class ChatClientGUI extends Application {
     public void start(Stage stage) throws Exception {
         Socket socket = new Socket("localhost", 12345);
         out = new PrintWriter(socket.getOutputStream(), true);
+        chatArea = new TextArea();
+        chatArea.setEditable(false);
+        inputField = new TextField();
 
-        ClientReceiver receiver = new ClientReceiver(socket);
+
+        ClientReceiver receiver = new ClientReceiver(socket, chatArea);
         receiver.setDaemon(true);
 
         receiver.start();
 
-        chatArea = new TextArea();
-        chatArea.setEditable(false);
-
-        inputField = new TextField();
         ListView<String> userList = new ListView<>();
         userList.getItems().add("user1");
         userList.getItems().add("user2");
@@ -53,6 +53,7 @@ public class ChatClientGUI extends Application {
 
         Scene scene = new Scene(pane);
         stage.setScene(scene);
+        stage.setTitle("Chat");
         stage.show();
     }
 
