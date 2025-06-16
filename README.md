@@ -1,5 +1,6 @@
 # Zadania na plusy:
 Zadania można wysłać na maila: rafal.niedziolka-domanski@mail.umcs.pl
+
 Czas do sesji: 23 czerwca
 ## Kolokwium 2
  Za 4 punkty. Można wysłać rozwiązanie kolokwium 2 z 2022 roku. Proszę na bieżąco testować to, co się robi, aby upewnić się, że działa zgodnie z oczekiwaniami, oraz naprawiać ewentualne błędy. W trakcie nauki i rozwiązywania problemów można korzystać z modeli sztucznej inteligencji, aby zapytać, dlaczego coś nie działa, jak to naprawić, albo jak zrobić coś, czego jeszcze nie umiemy. Celem powinien być sensownie działający program, a nie kod, który jedynie sprawia wrażenie, że coś robi. 
