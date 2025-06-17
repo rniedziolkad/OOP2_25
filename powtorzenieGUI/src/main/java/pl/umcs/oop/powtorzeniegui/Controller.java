@@ -52,6 +52,7 @@ public class Controller {
                         dot.radius()*2
                 );
             });
+            this.serverThread.setDaemon(true);
 
             this.serverThread.start();
             System.out.println("Połączono!");
